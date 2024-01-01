@@ -1,9 +1,10 @@
-**Instructions**
+## Instructions
+
 Using Terminal, do the following:
 
     $ python app.py
 
-This programm will instantiate meta-model from the grammar peep.tx. A model.peep is then parsed and instantiated by the meta-model and both meta-model and model are exported to .dot files in the folder dotexport. This command will generate dot files in dotexport folder. We can convert those files to PNG format. Note: It is important to have GraphViz installed!!!
+This program will instantiate meta-model from the grammar peep.tx. A model.peep is then parsed and instantiated by the meta-model and both meta-model and model are exported to .dot files in the folder dotexport. This command will generate dot files in dotexport folder. We can convert those files to PNG format. Note: It is important to have GraphViz installed!!!
 
 To convert the files to PNG format do the following :
 
