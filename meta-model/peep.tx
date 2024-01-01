@@ -1,0 +1,136 @@
+Model:
+    peepModel=PeepModel
+    pomFileModel=PomFileModel
+    databaseModel=DatabaseModel
+;
+
+PeepModel:
+    types*=SimpleType
+    peeps+=Peep
+;
+
+Peep:
+    'peep' name=ID '{'
+        properties+=Property
+    '}'
+;
+
+Property:
+    name=ID ':' type=[Type] 
+;
+
+Type:
+    SimpleType | Peep
+;
+
+SimpleType:
+    'type' name=ID
+;
+
+PomFileModel:
+    mainContent=PomMainContent                  // required content
+    additionalContent=PomAdditionalContent      // optional content
+;
+
+PomMainContent:
+    modelVersion=ModelVersion
+    projectGroupId=ProjectGroup            // these four concepts are required in every pom.xml file
+    projectId=ProjectId
+    projectVersion=ProjectVersion
+;
+
+ModelVersion:
+    'modelVersion :' name = /.+\b/
+;
+
+ProjectGroup:
+    'projectGroup :' projectGroup = /.+\b/
+;
+
+ProjectId:
+    'projectId :' name=ID
+;
+
+ProjectVersion:
+    'projectVersion :' version = /.+\b/
+;
+
+PomAdditionalContent:
+    (projectArchive=ProjectArchive)?         //concepts in this rule are optional in pom file
+    (projectName=ProjectName)? 
+    (description=Description)? 
+    (pomProperties*=PomProperty)? 
+    (dependencies*=Dependency)?
+;
+
+ProjectName:
+    'projectName :' name=ID
+;
+
+Description:
+    'description :' name = /.+\b/
+;
+
+ProjectArchive:
+    'package :' package=PackageType
+;
+
+PackageType:
+    "war" | "jar"
+;
+
+PomProperty:
+    'property' propertyName = ID '{'
+        'key :' key = /.+\b/
+        'value :' value = /.+\b/
+    '}'
+;
+
+Dependency:
+    'dependency' name=ID '['
+        'groupId :' groupId = /.+\b/
+        'artifactId :' artifactId = /.+\b/
+        'scope :' scope=ID 
+    ']'
+;
+
+DatabaseModel:
+    urlParam = URL_Param
+    username = DatabaseUsername
+    password = DatabasePassword
+    databaseCreation = DatabaseCreation
+    (generateDDL = DDLgeneration)?
+    (showSQL = ShowSQL)?
+;
+
+URL_Param:
+    'databaseURL :' databaseURL = /.+\b/
+;
+
+DatabaseUsername:
+    'databaseUsername :' databaseUsername = ID
+;
+
+DatabasePassword:
+    'databasePassword :' databasePassword = ID
+;
+
+DatabaseCreation:
+    'databaseCreation :' creation = TypeCreation
+;
+
+TypeCreation:
+    "none" | "create-drop" | "validate" | "update" | "create"
+;
+
+DDLgeneration:
+    'generateDDL :' generation = BOOL 
+;
+
+ShowSQL:
+    'showSQL :' show = BOOL
+;
+
+Comment:
+    /\/\/.*$/
+;

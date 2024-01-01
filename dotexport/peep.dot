@@ -1,0 +1,105 @@
+
+    digraph textX {
+    fontname = "Bitstream Vera Sans"
+    fontsize = 8
+    node[
+        shape=record,
+        style=filled,
+        fillcolor=aliceblue
+    ]
+    nodesep = 0.3
+    edge[dir=black,arrowtail=empty]
+
+
+140491571096608[ label="{Model|}"]
+
+140491571100240[ label="{PeepModel|}"]
+
+140491571102704[ label="{Peep|name: ID\l}"]
+
+140491571105168[ label="{Property|name: ID\l}"]
+
+140491571107632[ label="{*Type|}"]
+
+140491559291808[ label="{SimpleType|name: ID\l}"]
+
+140491571110672[ label="{PomFileModel|}"]
+
+140491571113136[ label="{PomMainContent|}"]
+
+140491559370592[ label="{ModelVersion|name: STRING\l}"]
+
+140491559409200[ label="{ProjectGroup|projectGroup: STRING\l}"]
+
+140491559411664[ label="{ProjectId|name: ID\l}"]
+
+140491559414704[ label="{ProjectVersion|version: STRING\l}"]
+
+140491559417744[ label="{PomAdditionalContent|}"]
+
+140491559420208[ label="{ProjectName|name: ID\l}"]
+
+140491559422672[ label="{Description|name: STRING\l}"]
+
+140491559425712[ label="{ProjectArchive|package: PackageType\l}"]
+
+140491559430640[ label="{PomProperty|propertyName: ID\lkey: STRING\lvalue: STRING\l}"]
+
+140491559434256[ label="{Dependency|name: ID\lgroupId: STRING\lartifactId: STRING\lscope: ID\l}"]
+
+140491559437872[ label="{DatabaseModel|}"]
+
+140491559440336[ label="{URL_Param|databaseURL: STRING\l}"]
+
+140491569150320[ label="{DatabaseUsername|databaseUsername: ID\l}"]
+
+140491569152784[ label="{DatabasePassword|databasePassword: ID\l}"]
+
+140491569155248[ label="{DatabaseCreation|creation: TypeCreation\l}"]
+
+140491569160176[ label="{DDLgeneration|generation: BOOL\l}"]
+
+140491569162640[ label="{ShowSQL|show: BOOL\l}"]
+
+
+
+140491571096608 -> 140491571100240[arrowtail=diamond, dir=both, headlabel="peepModel "]
+140491571096608 -> 140491571110672[arrowtail=diamond, dir=both, headlabel="pomFileModel "]
+140491571096608 -> 140491559437872[arrowtail=diamond, dir=both, headlabel="databaseModel "]
+140491571100240 -> 140491559291808[arrowtail=diamond, dir=both, headlabel="types 0..*"]
+140491571100240 -> 140491571102704[arrowtail=diamond, dir=both, headlabel="peeps 1..*"]
+140491571102704 -> 140491571105168[arrowtail=diamond, dir=both, headlabel="properties 1..*"]
+140491571105168 -> 140491571107632[headlabel="type "]
+140491571107632 -> 140491559291808 [dir=back]
+140491571107632 -> 140491571102704 [dir=back]
+140491571110672 -> 140491571113136[arrowtail=diamond, dir=both, headlabel="mainContent "]
+140491571110672 -> 140491559417744[arrowtail=diamond, dir=both, headlabel="additionalContent "]
+140491571113136 -> 140491559370592[arrowtail=diamond, dir=both, headlabel="modelVersion "]
+140491571113136 -> 140491559409200[arrowtail=diamond, dir=both, headlabel="projectGroupId "]
+140491571113136 -> 140491559411664[arrowtail=diamond, dir=both, headlabel="projectId "]
+140491571113136 -> 140491559414704[arrowtail=diamond, dir=both, headlabel="projectVersion "]
+140491559417744 -> 140491559425712[arrowtail=diamond, dir=both, headlabel="projectArchive "]
+140491559417744 -> 140491559420208[arrowtail=diamond, dir=both, headlabel="projectName "]
+140491559417744 -> 140491559422672[arrowtail=diamond, dir=both, headlabel="description "]
+140491559417744 -> 140491559430640[arrowtail=diamond, dir=both, headlabel="pomProperties 0..*"]
+140491559417744 -> 140491559434256[arrowtail=diamond, dir=both, headlabel="dependencies 0..*"]
+140491559437872 -> 140491559440336[arrowtail=diamond, dir=both, headlabel="urlParam "]
+140491559437872 -> 140491569150320[arrowtail=diamond, dir=both, headlabel="username "]
+140491559437872 -> 140491569152784[arrowtail=diamond, dir=both, headlabel="password "]
+140491559437872 -> 140491569155248[arrowtail=diamond, dir=both, headlabel="databaseCreation "]
+140491559437872 -> 140491569160176[arrowtail=diamond, dir=both, headlabel="generateDDL "]
+140491559437872 -> 140491569162640[arrowtail=diamond, dir=both, headlabel="showSQL "]
+match_rules [ shape=plaintext, label=< <table>
+	<tr>
+		<td><b>Comment</b></td><td>\/\/.*$</td>
+	</tr>
+	<tr>
+		<td><b>PackageType</b></td><td>war|jar</td>
+	</tr>
+	<tr>
+		<td><b>TypeCreation</b></td><td>none|create-drop|validate|update|create</td>
+	</tr>
+</table> >]
+
+
+}
